@@ -77,6 +77,7 @@
     <script>
         const videoElement = document.getElementById('camera-feed');
         const fullscreenBtn = document.getElementById('fullscreen-btn');
+        let hideButtonTimer; // To hold the timeout ID
 
         async function startCamera() {
             try {
@@ -93,6 +94,7 @@
 
         // When the button is clicked, go fullscreen and hide the button.
         fullscreenBtn.addEventListener('click', () => {
+            clearTimeout(hideButtonTimer); // Cancel the auto-hide timer
             fullscreenBtn.style.display = 'none';
             const elem = document.documentElement;
             if (elem.requestFullscreen) {
@@ -111,6 +113,12 @@
             // But don't show it if the click was on the button itself.
             if (event.target !== fullscreenBtn) {
                 fullscreenBtn.style.display = 'block';
+                // Clear any old timer to reset the 10-second countdown
+                clearTimeout(hideButtonTimer);
+                // Set a new timer to hide the button after 10 seconds
+                hideButtonTimer = setTimeout(() => {
+                    fullscreenBtn.style.display = 'none';
+                }, 10000);
             }
         });
 

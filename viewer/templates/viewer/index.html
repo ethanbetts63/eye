@@ -25,9 +25,36 @@
         #camera-feed {
             z-index: 1;
         }
+        #rotate-prompt {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: black;
+            color: white;
+            z-index: 10;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        @media (orientation: portrait) {
+            #camera-feed, #eye-gif {
+                display: none;
+            }
+            #rotate-prompt {
+                display: flex;
+            }
+        }
     </style>
 </head>
 <body>
+    <div id="rotate-prompt">
+        Please rotate your device to landscape mode.
+    </div>
     <video id="camera-feed" autoplay playsinline></video>
     <img id="eye-gif" src="{% static 'eye.gif' %}" alt="Eye">
 

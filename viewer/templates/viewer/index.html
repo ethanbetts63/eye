@@ -50,6 +50,7 @@
             }
         }
         #fullscreen-btn {
+            display: none; /* Hidden by default */
             position: absolute;
             top: 20px;
             right: 20px;
@@ -87,11 +88,12 @@
                 videoElement.srcObject = stream;
             } catch (err) {
                 console.error("Error accessing the camera: ", err);
-                // Optionally, hide the video element or show an error message
             }
         }
 
+        // When the button is clicked, go fullscreen and hide the button.
         fullscreenBtn.addEventListener('click', () => {
+            fullscreenBtn.style.display = 'none';
             const elem = document.documentElement;
             if (elem.requestFullscreen) {
                 elem.requestFullscreen();
@@ -101,6 +103,14 @@
                 elem.webkitRequestFullscreen();
             } else if (elem.msRequestFullscreen) { /* IE/Edge */
                 elem.msRequestFullscreen();
+            }
+        });
+
+        // When the user clicks anywhere on the screen, show the button.
+        document.body.addEventListener('click', (event) => {
+            // But don't show it if the click was on the button itself.
+            if (event.target !== fullscreenBtn) {
+                fullscreenBtn.style.display = 'block';
             }
         });
 

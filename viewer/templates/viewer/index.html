@@ -2,69 +2,118 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Eye</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            background-color: black;
-        }
-        #camera-feed, #eye-gif {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-        }
-        #eye-gif {
-            z-index: 2;
-        }
-        #camera-feed {
-            z-index: 1;
-        }
-        #rotate-prompt {
-            display: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: black;
-            color: white;
-            z-index: 10;
-            justify-content: center;
-            align-items: center;
-            font-size: 2em;
-            text-align: center;
-        }
+    <script>
+        window.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        if (window.isIOS) {
+            document.write(`
+                <style>
+                    html, body {
+                      margin: 0;
+                      padding: 0;
+                      width: 100%;
+                      height: 100%;
+                      overflow: hidden;
+                      background: black;
+                    }
 
-        @media (orientation: portrait) {
-            #camera-feed, #eye-gif, #fullscreen-btn {
-                display: none;
-            }
-            #rotate-prompt {
-                display: flex;
-            }
+                    #camera-feed, #eye-gif {
+                      position: fixed;
+                      top: 0;
+                      left: 0;
+                      width: 100dvw;
+                      height: 100dvh;
+                      object-fit: cover;
+                    }
+                    #eye-gif { z-index: 2; }
+                    #camera-feed { z-index: 1; }
+                    #rotate-prompt {
+                        display: none;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100vw;
+                        height: 100vh;
+                        background-color: black;
+                        color: white;
+                        z-index: 10;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 2em;
+                        text-align: center;
+                    }
+
+                    @media (orientation: portrait) {
+                        #camera-feed, #eye-gif, #fullscreen-btn { display: none; }
+                        #rotate-prompt { display: flex; }
+                    }
+                    #fullscreen-btn { display: none; }
+                </style>
+            `);
+        } else {
+            document.write(`
+                <style>
+                    body, html {
+                        margin: 0;
+                        padding: 0;
+                        height: 100%;
+                        overflow: hidden;
+                        background-color: black;
+                    }
+                    #camera-feed, #eye-gif {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100vw;
+                        height: 100vh;
+                        object-fit: cover;
+                    }
+                    #eye-gif { z-index: 2; }
+                    #camera-feed { z-index: 1; }
+                    #rotate-prompt {
+                        display: none;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100vw;
+                        height: 100vh;
+                        background-color: black;
+                        color: white;
+                        z-index: 10;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 2em;
+                        text-align: center;
+                    }
+
+                    @media (orientation: portrait) {
+                        #camera-feed, #eye-gif, #fullscreen-btn {
+                            display: none;
+                        }
+                        #rotate-prompt {
+                            display: flex;
+                        }
+                    }
+                    #fullscreen-btn {
+                        display: none; /* Hidden by default */
+                        position: absolute;
+                        top: 20px;
+                        right: 20px;
+                        z-index: 100;
+                        background-color: rgba(0, 0, 0, 0.5);
+                        color: white;
+                        border: 2px solid white;
+                        padding: 10px 15px;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-family: sans-serif;
+                        font-size: 1em;
+                    }
+                </style>
+            `);
         }
-        #fullscreen-btn {
-            display: none; /* Hidden by default */
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 100;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: 2px solid white;
-            padding: 10px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: sans-serif;
-            font-size: 1em;
-        }
-    </style>
+    </script>
 </head>
 <body>
     <div id="rotate-prompt">
@@ -92,35 +141,37 @@
             }
         }
 
-        // When the button is clicked, go fullscreen and hide the button.
-        fullscreenBtn.addEventListener('click', () => {
-            clearTimeout(hideButtonTimer); // Cancel the auto-hide timer
-            fullscreenBtn.style.display = 'none';
-            const elem = document.documentElement;
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.mozRequestFullScreen) { /* Firefox */
-                elem.mozRequestFullScreen();
-            } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) { /* IE/Edge */
-                elem.msRequestFullscreen();
-            }
-        });
+        if (!window.isIOS) {
+            // When the button is clicked, go fullscreen and hide the button.
+            fullscreenBtn.addEventListener('click', () => {
+                clearTimeout(hideButtonTimer); // Cancel the auto-hide timer
+                fullscreenBtn.style.display = 'none';
+                const elem = document.documentElement;
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.mozRequestFullScreen) { /* Firefox */
+                    elem.mozRequestFullScreen();
+                } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) { /* IE/Edge */
+                    elem.msRequestFullscreen();
+                }
+            });
 
-        // When the user clicks anywhere on the screen, show the button.
-        document.body.addEventListener('click', (event) => {
-            // But don't show it if the click was on the button itself.
-            if (event.target !== fullscreenBtn) {
-                fullscreenBtn.style.display = 'block';
-                // Clear any old timer to reset the 10-second countdown
-                clearTimeout(hideButtonTimer);
-                // Set a new timer to hide the button after 10 seconds
-                hideButtonTimer = setTimeout(() => {
-                    fullscreenBtn.style.display = 'none';
-                }, 10000);
-            }
-        });
+            // When the user clicks anywhere on the screen, show the button.
+            document.body.addEventListener('click', (event) => {
+                // But don't show it if the click was on the button itself.
+                if (event.target !== fullscreenBtn) {
+                    fullscreenBtn.style.display = 'block';
+                    // Clear any old timer to reset the 10-second countdown
+                    clearTimeout(hideButtonTimer);
+                    // Set a new timer to hide the button after 10 seconds
+                    hideButtonTimer = setTimeout(() => {
+                        fullscreenBtn.style.display = 'none';
+                    }, 10000);
+                }
+            });
+        }
 
         startCamera();
     </script>

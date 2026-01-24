@@ -42,12 +42,26 @@
         }
 
         @media (orientation: portrait) {
-            #camera-feed, #eye-gif {
+            #camera-feed, #eye-gif, #fullscreen-btn {
                 display: none;
             }
             #rotate-prompt {
                 display: flex;
             }
+        }
+        #fullscreen-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: sans-serif;
+            font-size: 1em;
         }
     </style>
 </head>
@@ -55,11 +69,13 @@
     <div id="rotate-prompt">
         Please rotate your device to landscape mode.
     </div>
+    <button id="fullscreen-btn">Go Fullscreen</button>
     <video id="camera-feed" autoplay playsinline></video>
     <img id="eye-gif" src="{% static 'eye.gif' %}" alt="Eye">
 
     <script>
         const videoElement = document.getElementById('camera-feed');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
 
         async function startCamera() {
             try {
@@ -74,6 +90,19 @@
                 // Optionally, hide the video element or show an error message
             }
         }
+
+        fullscreenBtn.addEventListener('click', () => {
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) { /* Firefox */
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE/Edge */
+                elem.msRequestFullscreen();
+            }
+        });
 
         startCamera();
     </script>

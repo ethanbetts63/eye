@@ -79,13 +79,13 @@
     <script>
         const videoElement = document.getElementById('camera-feed');
         const fullscreenBtn = document.getElementById('fullscreen-btn');
-        let hideButtonTimer; // To hold the timeout ID
+        let hideButtonTimer; 
 
         async function startCamera() {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({
                     video: {
-                        facingMode: 'user' // Use the front-facing camera
+                        facingMode: 'user' 
                     }
                 });
                 videoElement.srcObject = stream;

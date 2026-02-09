@@ -1,0 +1,194 @@
+Deployment details
+https://6195bb0d.eye-d9q.pages.dev
+Aliases:
+amandakessaris.com
+Repository:
+
+ethanbetts63/eye
+Branch:
+master
+8a01092
+test
+Status:
+Success
+4:00PM February 9, 2026
+Duration:
+46s
+Build settings
+Build log
+Assets uploaded
+Functions
+Redirects
+Headers
+Build log
+Initializing build environment
+28s
+Cloning git repository
+3s
+Building application
+5s
+Deploying to Cloudflare's global network
+11s
+16:00:14.317	Cloning repository...
+16:00:15.758	From https://github.com/ethanbetts63/eye
+16:00:15.758	 * branch            8a01092fb0eaefd04dd3f027e4743974e036b019 -> FETCH_HEAD
+16:00:15.758	
+16:00:15.795	HEAD is now at 8a01092 test
+16:00:15.795	
+16:00:15.868	
+16:00:15.869	Using v2 root directory strategy
+16:00:15.888	Success: Finished cloning repository files
+16:00:18.031	Checking for configuration in a Wrangler configuration file (BETA)
+16:00:18.032	
+16:00:19.171	No wrangler.toml file found. Continuing.
+16:00:19.171	No build command specified. Skipping build step.
+16:00:19.172	Note: No functions dir at /functions found. Skipping.
+16:00:19.172	Validating asset output directory
+16:00:21.896	Deploying your site to Cloudflare's global network...
+16:00:24.917	Uploading... (3/4)
+16:00:25.745	Uploading... (4/4)
+16:00:25.745	✨ Success! Uploaded 1 files (3 already uploaded) (1.34 sec)
+16:00:25.745	
+16:00:26.072	✨ Upload complete!
+16:00:30.442	Success: Assets published!
+16:00:32.958	Success: Your site was deployed!
+
+
+This is the current and up to date build. 
+
+DNS
+
+Records
+Configure DNS records and review proxy status of your hostnames.
+
+
+Recommended steps to complete zone set-up
+Hide
+Add an A, AAAA, or CNAME record for www so that www.amandakessaris.com will resolve.
+
+Add an MX record for your root domain so that mail can reach @amandakessaris.com addresses or set up restrictive SPF, DKIM, and DMARC records to prevent email spoofing.
+DNS management for amandakessaris.com
+Review, add, and edit DNS records. Edits will go into effect once saved.
+DNS Setup: Full
+
+
+Import and Export
+
+
+Dashboard Display Settings
+Search DNS Records
+Your search yielded 1 result
+
+Type
+
+Name
+
+Content
+
+Proxy status
+
+TTL
+
+Actions
+
+
+
+CNAME
+amandakessaris.com
+eye-d9q.pages.dev
+
+Proxied
+
+Auto
+EditWhen toggled open, an additional table row will be added below this row to enable editing DNS records.
+Cloudflare Nameservers
+Every DNS zone on Cloudflare is assigned a set of Cloudflare-branded nameservers.
+Type	Value
+NS	amos.ns.cloudflare.com
+NS	nina.ns.cloudflare.com
+
+Workers & Pages
+eye
+Deployments
+Metrics
+Custom domains
+Settings
+Production
+Visit
+Automatic deployments enabled
+
+Domains:
+eye-d9q.pages.dev
+amandakessaris.com
+master
+8a01092
+6195bb0d.eye-d9q.pages.dev
+
+
+Build
+Variables and Secrets
+Bindings
+Runtime
+General
+Pages configuration
+Give feedback
+Choose Environment:
+Build
+Git repository
+
+ethanbetts63/eye
+Build configuration
+Build command:
+Build output:
+public
+Root directory:
+Build comments:
+Enabled
+Build cache
+Disabled
+Branch control
+Production branch:
+master
+Automatic deployments:
+Enabled
+Build watch paths
+Include paths:
+*
+Build system version
+Version 3
+Deploy Hooks
+No deploy hooks defined
+Variables and Secrets
+Define the text, secret or build variables for your project
+
+Configure API tokens and other runtime variables
+Bindings
+
+Define the set of resources available to your Pages Functions
+
+Configure ways to interact with storage, databases, AI and more from your Worker
+Runtime
+Define the runtime configuration for your Pages Functions
+
+Placement
+Default
+Compatibility date
+Jan 31, 2026
+Compatibility flags
+No flags defined
+Fail open/closed
+Fail open
+General
+Name
+eye
+Notifications
+Subscribe to specific events by adding a notification to your project
+Access policy
+Control access to preview deployments with Cloudflare Access.
+Permanently delete this Pages project including all deployments, assets, functions and configurations associated with it.
+
+
+
+This amandakessaris.com page can’t be found
+No webpage was found for the web address: https://amandakessaris.com/
+HTTP ERROR 404
